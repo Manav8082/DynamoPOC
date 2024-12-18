@@ -1,0 +1,257 @@
+{
+  "Uuid": "a561a0bf-e5e5-427c-8483-a44b9c245276",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "PocOutput",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "7768787a5a364828be381986725ac765",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5d828c24ffb748618481a398e5954414",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "E:\\LatencyMetrics.csv",
+      "InputValue": "E:\\LatencyMetrics.csv"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 422.0,
+      "WatchHeight": 265.0,
+      "Id": "714d316d38ee4486a01150bb44696896",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "78d9aaeed8a145d3900e71db860944f5",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "034f0ab0aace4e71b3be637afca46dc0",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7345e5a2ea114ae997c3a6275b25d683",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6f56d2ceafee40fc8efbc915887c8f60",
+          "Name": "filePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "48fe874207e04a118002d47c8ea5b263",
+          "Name": "ExchangeData[]",
+          "Description": "ExchangeData[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynomaoPOC.Class1.LoadExchangeDataFromCSV@string",
+      "Replication": "Auto",
+      "Description": "Class1.LoadExchangeDataFromCSV (filePath: string): ExchangeData[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4279790a4ac04baab2a47af95091d439",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "119171f06b8440769e1d662fd6e5a5cc",
+          "Name": "data",
+          "Description": "ExchangeData[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "23bdc13fb22e4574a3cf19ca39f2e80c",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynomaoPOC.Class1.AggregateData@DynomaoPOC.ExchangeData[]",
+      "Replication": "Auto",
+      "Description": "Class1.AggregateData (data: ExchangeData[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5d828c24ffb748618481a398e5954414",
+      "End": "6f56d2ceafee40fc8efbc915887c8f60",
+      "Id": "a0b8b402575442aabdc04b1bbde70130",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "48fe874207e04a118002d47c8ea5b263",
+      "End": "119171f06b8440769e1d662fd6e5a5cc",
+      "Id": "acadcac49b224ca78a3f267c4a1d739e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "23bdc13fb22e4574a3cf19ca39f2e80c",
+      "End": "78d9aaeed8a145d3900e71db860944f5",
+      "Id": "0c403b96a3b444589717711ca4edfb1e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "DynomaoPOC.dll",
+      "ReferenceType": "ZeroTouch",
+      "Nodes": [
+        "7345e5a2ea114ae997c3a6275b25d683",
+        "4279790a4ac04baab2a47af95091d439"
+      ]
+    },
+    {
+      "Name": "LatencyMetrics.csv",
+      "ReferenceType": "External",
+      "Nodes": [
+        "7768787a5a364828be381986725ac765"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7768787a5a364828be381986725ac765",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 137.5,
+        "Y": 82.0
+      },
+      {
+        "Id": "714d316d38ee4486a01150bb44696896",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 940.5,
+        "Y": 140.0
+      },
+      {
+        "Id": "7345e5a2ea114ae997c3a6275b25d683",
+        "Name": "Class1.LoadExchangeDataFromCSV",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 311.5,
+        "Y": 348.0
+      },
+      {
+        "Id": "4279790a4ac04baab2a47af95091d439",
+        "Name": "Class1.AggregateData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 561.5,
+        "Y": 597.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
